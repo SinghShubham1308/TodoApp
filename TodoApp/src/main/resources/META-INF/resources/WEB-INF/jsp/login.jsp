@@ -3,16 +3,17 @@
 
 <head>
 <title>HTML Login Form</title>
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="WEB-INF/css/styles.css">
 </head>
 
 <body>
 	<div class="main">
+	<pre>${error}</pre>
 		<h1>GeeksforGeeks ${name }</h1>
 		<h3>Enter your login credentials</h3>
-		<form action="">
-			<label for="first"> Username: </label> <input type="text" id="first"
-				name="first" placeholder="Enter your Username" required> <label
+		<form action="" method="post">
+			<label for="username"> Username: </label> <input type="texst" id="username"
+				name="username" placeholder="Enter your Username" required> <label
 				for="password"> Password: </label> <input type="password"
 				id="password" name="password" placeholder="Enter your Password"
 				required>
