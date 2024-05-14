@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 public class Todo {
 	private int id;
-	private String descriptionString;
+	private String description;
 	private String username;
 	private LocalDate targetDate;
 	private boolean isDone;
@@ -17,12 +17,12 @@ public class Todo {
 		this.id = id;
 	}
 
-	public String getDescriptionString() {
-		return descriptionString;
+	public String getDescription() {
+		return description;
 	}
 
-	public void setDescriptionString(String descriptionString) {
-		this.descriptionString = descriptionString;
+	public void setDescriptionString(String description) {
+		this.description = description;
 	}
 
 	public String getUsername() {
@@ -51,14 +51,14 @@ public class Todo {
 
 	@Override
 	public String toString() {
-		return "Todo [id=" + id + ", descriptionString=" + descriptionString + ", username=" + username
+		return "Todo [id=" + id + ", description=" + description+ ", username=" + username
 				+ ", targetDate=" + targetDate + ", isDone=" + isDone + "]";
 	}
 
-	public Todo(int id, String descriptionString, String username, LocalDate targetDate, boolean isDone) {
+	public Todo(int id, String username, String description, LocalDate targetDate, boolean isDone) {
 		super();
 		this.id = id;
-		this.descriptionString = descriptionString;
+		this.description = description;
 		this.username = username;
 		this.targetDate = targetDate;
 		this.isDone = isDone;

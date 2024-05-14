@@ -1,32 +1,32 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-<title>HTML Login Form</title>
-<link rel="stylesheet" href="WEB-INF/css/styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Form</title>
+    <link href="webjars/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
 </head>
-
 <body>
-	<div class="main">
-	<pre>${error}</pre>
-		<h1>GeeksforGeeks ${name }</h1>
-		<h3>Enter your login credentials</h3>
-		<form action="" method="post">
-			<label for="username"> Username: </label> <input type="texst" id="username"
-				name="username" placeholder="Enter your Username" required> <label
-				for="password"> Password: </label> <input type="password"
-				id="password" name="password" placeholder="Enter your Password"
-				required>
-
-			<div class="wrap">
-				<button type="submit" onclick="solve()">Submit</button>
-			</div>
-		</form>
-		<p>
-			Not registered? <a href="#" style="text-decoration: none;">
-				Create an account </a>
-		</p>
-	</div>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <form action="" method="post" class="p-4 border rounded bg-light">
+                    <h3 class="mb-4">Login</h3>
+                    <div class="mb-3">
+                        <label for="username" class="form-label">Username:</label>
+                        <input type="text" id="username" name="username" class="form-control" placeholder="Enter your Username" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Password:</label>
+                        <input type="password" id="password" name="password" class="form-control" placeholder="Enter your Password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <p class="mt-3">Not registered? <a href="#" style="text-decoration: none;">Create an account</a></p>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="webjars/jquery/3.6.0/jquery.min.js"></script>
+    <script src="webjars/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
 </body>
-
 </html>
