@@ -15,10 +15,11 @@
 		<form:form method="post" modelAttribute="todo">
 				Description:<form:input type="text" path="description"
 				required="required" />
-			<%-- <form:errors path="description" cssClass="text-warning" /> --%>
+			 
 			<form:input type="hidden" path="id" />
 			<form:input type="hidden" path="done" />
 			<input type="submit" class="btn btn-success" />
+			<form:errors path="description" cssClass="text-warning" /> 
 		</form:form>
 	</div>
 	<script src="webjars/jquery/3.6.0/jquery.min.js"></script>

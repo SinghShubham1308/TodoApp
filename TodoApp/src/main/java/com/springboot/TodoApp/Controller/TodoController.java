@@ -2,7 +2,6 @@ package com.springboot.TodoApp.Controller;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,6 +10,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.springboot.TodoApp.Entity.Todo;
@@ -21,7 +21,8 @@ import jakarta.validation.Valid;
 @Controller
 @SessionAttributes("username")
 public class TodoController {
-private static Logger logger = LoggerFactory.getLogger(TodoController.class);
+	private static Logger logger = LoggerFactory.getLogger(TodoController.class);
+
 	public TodoController(TodoService todoService) {
 		super();
 		this.todoService = todoService;
@@ -31,35 +32,62 @@ private static Logger logger = LoggerFactory.getLogger(TodoController.class);
 
 	@GetMapping("list-todos")
 	public String listAllTodos(ModelMap model) {
-		String usernameString = (String)model.get("username");
-		logger.debug("[TodoController][listAllTodos] username "+ usernameString);
+		String usernameString = (String) model.get("username");
+		logger.debug("[TodoController][listAllTodos] username " + usernameString);
 		List<Todo> todos = todoService.findByUsername("SinghShubham1308");
 		logger.debug("[TodoController][listAllTodos] todos" + todos);
 		model.addAttribute("todos", todos);
 
 		return "listTodos";
 	}
+
 	@GetMapping("add-todo")
 	public String showNewTodoPage(ModelMap map) {
-		
-		String  name = (String) map.get("username");
-		Todo todo = new Todo(0,name, "", LocalDate.now().plusYears(1), false);
-//		logger.debug("[TodoController][showNewTodoPage] name "+name +" map " + map+" todo "+todo);
+
+		String name = (String) map.get("username");
+		Todo todo = new Todo(0, name, "", LocalDate.now().plusYears(1), false);
+		logger.debug("[TodoController][showNewTodoPage] name " + name + " map " + map + " todo " + todo);
 		map.put("todo", todo);
-//		logger.debug("[TodoController][showNewTodoPage]  map " + map);
-//		logger.debug("[TodoController][showNewTodoPage] todoList "+todo);
+		logger.debug("[TodoController][showNewTodoPage]  map " + map);
+		logger.debug("[TodoController][showNewTodoPage] todoList " + todo);
 		return "todo";
 	}
-	@PostMapping(value="add-todo")
-	public String addNewTodo(ModelMap model, Todo todo) {
+
+	@PostMapping(value = "add-todo")
+	public String addNewTodo(ModelMap model, @Valid Todo todo, BindingResult result) {
+
+		if (result.hasErrors()) {
+			return "todo";
+		}
+
+		String username = (String) model.get("name");
+		todoService.addTodo(username, todo.getDescription(), LocalDate.now().plusYears(1), false);
+		return "redirect:list-todos";
+	}
+	@GetMapping("delete-Todo")
+	public String deleteTodo(@RequestParam int id) {
+		todoService.deleteTodo(id);
+		logger.info("[TodoController][deleteTodo] into the delete method with id "+id);
+		return "redirect:list-todos";
+	}
+	@GetMapping("update-Todo")
+	public String showUpdateTodoPage(@RequestParam int id,ModelMap model) {
 		
-//		if(result.hasErrors()) {
-//			return "todo";
-//		}
-//		
-		String username = (String)model.get("name");
-		todoService.addTodo(username, todo.getDescription(), 
-				LocalDate.now().plusYears(1), false);
+		Todo todo = todoService.findeById(id);
+		model.addAttribute("todo",todo);
+//		logger.info("[TodoController][deleteTodo] into the update method with id "+id +' '+username);
+		return "todo";
+	}
+	@PostMapping("update-Todo")
+	public String UpdateTodo(ModelMap model, @Valid Todo todo, BindingResult result) {
+		
+		if (result.hasErrors()) {
+			return "todo";
+		}
+
+		String username = (String) model.get("name");
+		todo.setUsername(username);
+		todoService.updateTodo(todo);
 		return "redirect:list-todos";
 	}
 
