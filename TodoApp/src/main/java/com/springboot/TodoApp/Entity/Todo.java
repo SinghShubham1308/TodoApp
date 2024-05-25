@@ -2,12 +2,29 @@ package com.springboot.TodoApp.Entity;
 
 import java.time.LocalDate;
 
+import jakarta.validation.constraints.Size;
+
+//Database (MySQL) 
+//Static List of todos => Database (H2, MySQL)
+
 public class Todo {
+
+	public Todo(int id, String username, String description, LocalDate targetDate, boolean done) {
+		super();
+		this.id = id;
+		this.username = username;
+		this.description = description;
+		this.targetDate = targetDate;
+		this.done = done;
+	}
+
 	private int id;
-	private String description;
 	private String username;
+	
+	@Size(min=10, message="Enter atleast 10 characters")
+	private String description;
 	private LocalDate targetDate;
-	private boolean isDone;
+	private boolean done;
 
 	public int getId() {
 		return id;
@@ -17,20 +34,20 @@ public class Todo {
 		this.id = id;
 	}
 
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescriptionString(String description) {
-		this.description = description;
-	}
-
 	public String getUsername() {
 		return username;
 	}
 
 	public void setUsername(String username) {
 		this.username = username;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	public LocalDate getTargetDate() {
@@ -42,30 +59,17 @@ public class Todo {
 	}
 
 	public boolean isDone() {
-		return isDone;
+		return done;
 	}
 
-	public void setDone(boolean isDone) {
-		this.isDone = isDone;
+	public void setDone(boolean done) {
+		this.done = done;
 	}
 
 	@Override
 	public String toString() {
-		return "Todo [id=" + id + ", description=" + description+ ", username=" + username
-				+ ", targetDate=" + targetDate + ", isDone=" + isDone + "]";
+		return "Todo [id=" + id + ", username=" + username + ", description=" + description + ", targetDate="
+				+ targetDate + ", done=" + done + "]";
 	}
 
-	public Todo(int id, String username, String description, LocalDate targetDate, boolean isDone) {
-		super();
-		this.id = id;
-		this.description = description;
-		this.username = username;
-		this.targetDate = targetDate;
-		this.isDone = isDone;
-	}
-
-	public Todo() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
 }

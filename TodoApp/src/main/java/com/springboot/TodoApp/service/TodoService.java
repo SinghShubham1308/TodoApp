@@ -14,16 +14,25 @@ public class TodoService {
 	private static int todosCount = 0;
 
 	static {
-		todos.add(new Todo(++todosCount, "in28minutes", "Learn AWS", LocalDate.now().plusYears(1), false));
-		todos.add(new Todo(++todosCount, "in28minutes", "Learn DevOps", LocalDate.now().plusYears(2), false));
-		todos.add(new Todo(++todosCount, "in28minutes", "Learn Full Stack Development", LocalDate.now().plusYears(3), false));
+		todos.add(new Todo(++todosCount, "SinghShubham1308", "Learn AWS", LocalDate.now().plusYears(1), false));
+		todos.add(new Todo(++todosCount, "SinghShubham1308", "Learn DevOps", LocalDate.now().plusYears(2), false));
+		todos.add(new Todo(++todosCount, "SinghShubham1308", "Learn Full Stack Development", LocalDate.now().plusYears(3),
+				false));
+		todos.add(new Todo(++todosCount, "123456", "Learn Spring Boot", LocalDate.now().plusYears(1), false));
+		todos.add(new Todo(++todosCount, "123456", "Complete Project", LocalDate.now().plusYears(2), false));
+		// Add more todos for the username "123456" as needed
 	}
 
 	public List<Todo> findByUsername(String username) {
+//	    return todos.stream()
+//	                .filter(todo -> todo.getUsername().equals(username))
+//	                .collect(Collectors.toList());
+//		return todos.stream().filter(todo -> todo.getUsername().equals(username)).toList();
 		return todos;
 	}
-	public void addTodo(String username,String description,LocalDate localDate,boolean isdone) {
-		Todo todo = new Todo(++todosCount, description, username, localDate, isdone);
+
+	public void addTodo(String username, String description, LocalDate localDate, boolean isdone) {
+		Todo todo = new Todo(++todosCount, username,description, localDate, isdone);
 		todos.add(todo);
 	}
 }
