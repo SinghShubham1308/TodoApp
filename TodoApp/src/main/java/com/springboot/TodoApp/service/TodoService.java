@@ -27,11 +27,9 @@ public class TodoService {
 	}
 
 	public List<Todo> findByUsername(String username) {
-//	    return todos.stream()
-//	                .filter(todo -> todo.getUsername().equals(username))
-//	                .collect(Collectors.toList());
-//		return todos.stream().filter(todo -> todo.getUsername().equals(username)).toList();
-		return todos;
+
+		return todos.stream().filter(todo -> todo.getUsername().equals(username)).toList();
+
 	}
 
 	public void addTodo(String username, String description, LocalDate localDate, boolean isdone) {
@@ -51,10 +49,10 @@ public class TodoService {
 		return todo;
 	}
 
+
 	public void updateTodo(@Valid Todo todo) {
-		// TODO Auto-generated method stub
-		deleteTodo(todo.getId());
-		todos.add(todo);
-	}
+			deleteTodo(todo.getId());
+			todos.add(todo);
+		}
 
 }
