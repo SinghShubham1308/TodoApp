@@ -2,11 +2,15 @@ package com.springboot.TodoApp.Entity;
 
 import java.time.LocalDate;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.validation.constraints.Size;
 
 //Database (MySQL) 
 //Static List of todos => Database (H2, MySQL)
-
+@Entity
 public class Todo {
 
 	public Todo(int id, String username, String description, LocalDate targetDate, boolean done) {
@@ -18,10 +22,12 @@ public class Todo {
 		this.done = done;
 	}
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String username;
-	
-	@Size(min=10, message="Enter atleast 10 characters")
+
+	@Size(min = 10, message = "Enter atleast 10 characters")
 	private String description;
 	private LocalDate targetDate;
 	private boolean done;
@@ -34,6 +40,7 @@ public class Todo {
 		this.id = id;
 	}
 
+	
 	public String getUsername() {
 		return username;
 	}
@@ -70,6 +77,11 @@ public class Todo {
 	public String toString() {
 		return "Todo [id=" + id + ", username=" + username + ", description=" + description + ", targetDate="
 				+ targetDate + ", done=" + done + "]";
+	}
+
+	public Todo() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
 }

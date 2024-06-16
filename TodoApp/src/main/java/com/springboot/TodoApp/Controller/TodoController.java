@@ -20,7 +20,7 @@ import com.springboot.TodoApp.service.TodoService;
 
 import jakarta.validation.Valid;
 
-@Controller
+//@Controller
 @SessionAttributes("username")
 public class TodoController {
 	private static Logger logger = LoggerFactory.getLogger(TodoController.class);
